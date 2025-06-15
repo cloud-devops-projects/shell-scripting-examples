@@ -29,7 +29,7 @@ function helper {
 
 # Function to make a GET request
 function github_get_api {
-    local endpoint=$1
+    local endpoint="$1"
     local url="${API_URL}/${endpoint}"
     # Send a GET request to the GitHub API with user params
     curl -s -u "${USERNAME}:${TOKEN}" "$url"
