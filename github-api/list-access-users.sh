@@ -39,7 +39,7 @@ function github_get_api {
 function list_users_with_read_access {
     local endpoint="repos/${REPO_OWNER}/${REPO_NAME}/collaborators"
     # Fetch the list of collaborators on the repository
-    collaborators="$(github_get_api "$endpoint" | jq -r '.[] | select.(.permissions.pull == true) | .login')"
+    collaborators="$(github_get_api "$endpoint" | jq -r '.[] | select(.permissions.pull == true) | .login')"    
     # Display the list of collaborators with read access
     if [[ -z "$collaborators" ]]; then
         echo "No users with read access found for ${REPO_OWNER}/${REPO_NAME}."
@@ -49,6 +49,6 @@ function list_users_with_read_access {
     fi
 }
 
-helper "$@"
+helper
 echo "Listing users with read access to ${REPO_OWNER}/${REPO_NAME}.."
 list_users_with_read_access
